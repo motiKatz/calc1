@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="ection" size="10">
+    </div>
+    
+        <div>
+            <span><button onclick="add(1)">1</button></span>
+            <span><button onclick="add(2)">2</button></span>
+            <span><button onclick="add(3)">3</button></span>
+            <span><button onclick="add('+')">+</button></span>
+        </div>
+        <div>
+            <span><button onclick="add(4)">4</button></span>
+            <span><button onclick="add(5)">5</button></span>
+            <span><button onclick="add(6)">6</button></span>
+            <span><button onclick="add('-')">-</button></span>
+        </div>
+        <div>
+            <span><button onclick="add(7)">7</button></span>
+            <span><button onclick="add(8)">8</button></span>
+            <span><button onclick="add(9)">9</button></span>
+            <span><button onclick="add('*')">*</button></span>
+        </div>
+        <div>
+            <span><button onclick="add('/')">/</button></span>
+            <span><button onclick="add(0)">0</button></span>
+            <span><button onclick="calculation()">=</button></span>
+            <span><button onclick="Clear()">c</button></span>
+        </div>
+        <p>history</p>
+        <div id="history" style="border: solid  blue;height: 80px ; ; width: 8%;" ></div>
+        <script>
+           let num = [] 
+           let numS = ''
+           let result = 0
+           let oprator ='+'
+           let numM = 0
+
+        function add(x){
+            console.log ('add start',x)
+            num.push(x);
+            document.getElementById("ection").value += x
+            console.log ('add end' , x)
+        }
+
+        function Clear(){
+            console.log ('clear start' ,document.getElementById("ection").value)
+            document.getElementById("history").innerHTML += document.getElementById("ection").value + "</br>"
+            console.error ('fak error')
+            document.getElementById("ection").value = ""
+            num = [] 
+            numS = ''
+            result = 0
+            oprator ='+'
+            numM = 0
+            console.log ('clear end', document.getElementById("ection").value)
+        }  
+
+        function calculation(){
+            console.log ('calculation' , num)
+          add('=')
+          debugger
+         for(let i = 0; i<num.length; i++){
+             console.log ("in the loop" ,num)
+            
+              if(typeof num[i] =="number"){
+                 numS += num[i];
+              }else{
+                  console.log ('it is else', i)
+                  numM = parseInt(numS)
+                  Intermediate(oprator,numM)
+                  console.error ('?',num)
+                  numS = ''
+                  oprator = num[i]
+                 
+              }
+              
+              }
+              console.log('not in the loop' , result)
+        document.getElementById("ection").value += result
+        // result = 0;
+            console.log ('calculation end' , result)
+        
+        }
+
+        function Intermediate(oprator,numM){
+            console.log ('starting the switch', oprator)
+            switch(oprator){
+              case "+":
+                 result += numM;
+                 break
+              case "-":
+                 result -= numM;
+                 break
+              case "/":
+                 result /= numM;
+                 break
+              case "*":
+              console.error ('be cefal',oprator)
+                 result *= numM;
+                 break
+        
+                
+        }
+        }
+
+        </script>
+  
+</body>
+</html>
